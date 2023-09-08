@@ -11,21 +11,25 @@ export default function TextForm(props) {
         console.log("Uppercase got clicked")
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to Uppercase", "success");
     }
     const onLowerClick = () => {
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("Converted to Lowercase", "success");
     }
     const onClearText = () => {
         let newText = '';
         setText(newText)
+        props.showAlert("Text Cleared", "success");
     }
     const onCopyText = () => {
         navigator.clipboard.writeText(text);
-        document.getElementById("copy-text").innerHTML = "Copied"
-        setTimeout(() => {
-            document.getElementById("copy-text").innerHTML = "Copy to Clipboard" 
-        }, 2000);
+        // document.getElementById("copy-text").innerHTML = "Copied"
+        // setTimeout(() => {
+        //     document.getElementById("copy-text").innerHTML = "Copy to Clipboard" 
+        // }, 2000);
+        props.showAlert("Text copied to clipboard", "success");
     }
 
     const [text,setText] = useState("");

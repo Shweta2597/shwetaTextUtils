@@ -36,20 +36,20 @@ export default function TextForm(props) {
 
   return (
     <div>
-        <h2 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{props.heading}</h2>
+        <h3 className={`text-${props.mode === 'light' ? 'dark' : 'light'} mb-3`}>{props.heading}</h3>
         <div className="mb-3">
             <textarea className="form-control" style={{backgroundColor:props.mode === 'light'?'white':'black', color:props.mode === 'light'?'black':'white'}} value={text} onChange={onTextChange} id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={onUpperClick}>Convert to uppercase</button>
-        <button className="btn btn-primary mx-1" onClick={onLowerClick}>Convert to lowercase</button>
-        <button className="btn btn-primary mx-1" onClick={onClearText}>Clear Text</button>
-        <button className="btn btn-primary mx-1" id="copy-text" onClick={onCopyText}>Copy to clipboard</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={onUpperClick}>Convert to uppercase</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={onLowerClick}>Convert to lowercase</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={onClearText}>Clear Text</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" id="copy-text" onClick={onCopyText}>Copy to clipboard</button>
         <div className={`text-${props.mode === 'light' ? 'dark' : 'light'} my-2`}>
-            <h3>Your text summary</h3>
-            <p>{text.split(" ").length-1} words and {text.length} charecters</p>
-            <p>{(text.split(" ").length-1)*0.008} minutes read</p>
-            <h3>Preview</h3>
-            <p>{text.length>0?text:'Enter something in the textbox above to preview it here'}</p>
+            <h4>Your text summary</h4>
+            <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} charecters</p>
+            <p>{(text.split(/\s+/).filter((element)=>{return element.length!==0}).length)*0.008} minutes read</p>
+            <h4>Preview</h4>
+            <p>{text.length>0?text:'Nothing to preview!'}</p>
         </div>
     </div>
   )
